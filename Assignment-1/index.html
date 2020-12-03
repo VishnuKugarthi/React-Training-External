@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-1-SalaryCalculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Salary extends React.Component{
+            //state
+            state = {
+                basic : '',
+                hra : '',
+                da:'',
+                tax:'',
+                salary:''
+            };
+
+            //UI Behavior
+            onBtnGreetClick = () => {
+                // const userName = this.state.userName,
+                //     message = `Hi ${userName}, ${this.props.template}`;
+                // this.setState({ message : message });
+                let gross = parseInt(this.state.basic) + parseInt(this.state.hra) + parseInt(this.state.da),
+                    net = (gross) * ((100-this.state.tax)/100);
+                    this.setState({ salary : net });
+                    console.log('gross = '+gross)
+                    console.log('net = '+net)
+            }
+
+            onBasicChange = (evt) => {
+                this.setState({ basic : evt.target.value });
+            }
+            onHraChange = (evt) => {
+                this.setState({ hra : evt.target.value });
+            }
+            onDaChange = (evt) => {
+                this.setState({ da : evt.target.value });
+            }
+            onTaxChange = (evt) => {
+                this.setState({ tax : evt.target.value });
+            }
+
+            //Presentation
+            render(){
+                console.log(this.props);
+                return(
+                     <div>
+                        <h1>Salary Calculator</h1>
+                        <hr/>
+                        <div>
+                            <div className="field">
+                                <label htmlFor="">Basic :</label>
+                                <input type="number" name="" id="txtBasic" onChange={this.onBasicChange} value={this.state.basic}/>
+                            </div>
+                            <div className="field">
+                                <label htmlFor="">HRA :</label>
+                                <input type="number" name="" id="txtHra" onChange={this.onHraChange} value={this.state.hra}/>
+                            </div>
+                            <div className="field">
+                                <label htmlFor="">DA :</label>
+                                <input type="number" name="" id="txtDa" onChange={this.onDaChange} value={this.state.da}/>
+                            </div>
+                            <div className="field">
+                                <label htmlFor="">Tax :</label>
+                                <input type="range" name="" id="rangeTax" min="0" max="30" onChange={this.onTaxChange} value={this.state.tax}/>
+                            </div>
+                            <div className="field">
+                                <input type="button" value="Calculate" id="btnCalculate" onClick={this.onBtnGreetClick}/>
+                            </div>
+                            <div className="field">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td id="tdBasic">{this.state.basic}</td>
+                                            <td id="tdHra">{this.state.hra}</td>
+                                            <td id="tdDa">{this.state.da}</td>
+                                            <td id="tdTax">{this.state.tax}</td>
+                                            <td id="tdSalary">{this.state.salary}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+    
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            /* React.createElement(Greeter, { template : 'Have a good day!'}),  */
+            <div>
+                <Salary  />
+                
+            </div>,
+            document.getElementById('root')
+        )
+    </script>
+  </head>
+  <body>
+    <div id="root">
+       
+    </div>
+    </body>
+</html>
