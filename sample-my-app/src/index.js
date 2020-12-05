@@ -4,20 +4,34 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import {bindActionCreators} from 'redux';
-import * as bugActionCreators from './bugTracker/actions';
-import store from './store';
-import BugTracker from './bugTracker';
+import { bindActionCreators } from "redux";
+import * as bugActionCreators from "./bugTracker/actions";
+import * as productActionCreators from "./products/action";
+import store from "./store";
+import BugTracker from "./bugTracker";
+import Products from "./products/view";
 
 const bugActionDispatchers = bindActionCreators(
   bugActionCreators,
   store.dispatch
 );
 
+const productActionDispatchers = bindActionCreators(
+  productActionCreators,
+  store.dispatch
+);
+
 function renderApp() {
-  const bugs = store.getState();
+  const stateStore = store.getState();
+  const bugs = stateStore.bugState;
+  const products = stateStore.bugState;
+
   ReactDOM.render(
-    <BugTracker bugs={bugs} {...bugActionDispatchers} />,
+    <React.StrictMode>
+      <h1>My App</h1>
+      <Products products={products} {...productActionDispatchers} />
+      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+    </React.StrictMode>,
     document.getElementById("root")
   );
 }
