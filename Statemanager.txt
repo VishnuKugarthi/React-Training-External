@@ -1,0 +1,77 @@
+function SpRed(currentState=0, action){
+if(action.type=='increment')return currentState+1;
+if(action.type=='decrement')return currentState-1;
+return currentState;
+}
+undefined
+var store=StateManager.createStore(SpRed);
+undefined
+store.getState
+ƒ getState(){
+        return _currentState
+    }
+store.getState();
+0
+store.dispatch({type:'decrement'})
+undefined
+store.getState();
+-1
+store.subscribe(()=> console.log('current store is ${store.getState()}'))
+undefined
+store.dispatch({type:'decrement'})
+VM1012:1 current store is ${store.getState()}
+undefined
+store.subscribe(()=> console.log(`current store is ${store.getState()}`))
+undefined
+store.dispatch({type:'decrement'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is -3
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is -2
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is -1
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 0
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 1
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 2
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 3
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 4
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 5
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 6
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 7
+undefined
+store.dispatch({type:'increment'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 8
+undefined
+store.dispatch({type:'decrement'})
+VM1012:1 current store is ${store.getState()}
+VM1055:1 current store is 7
+undefined

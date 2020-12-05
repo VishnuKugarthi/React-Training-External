@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>State Manager Demo</title>
+    <!-- <script>
+        function counterReducer(currentS=0, action){
+            if(action.type==='Plus') return currentS+1;
+            if(action.type==='Minus') return currentS-1;
+            return currentS;}
+            var store=StateManager.createStore(counterReducer)
+            store.dispatch({type:'Plus'})
+            store.getState()
+            store.dispatch({type:'Plus'})
+            store.dispatch({type:'Plus'})
+            store.getState()
+            3
+            store.subscribe(()=> console.log(`current store is ${store.getState()}`))
+            store.getState()
+            store.dispatch({type:'Plus'})
+            1 current store is 4
+            store.dispatch({type:'Minus'})
+            1 current store is 3
+      </script> -->
+    <script src="stateManager.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="redux.js"></script>
+    <script type="text/babel">
+      function counterReducer(currentS = 0, action) {
+        if (action.type === "Plus") return currentS + 1;
+        if (action.type === "Minus") return currentS - 1;
+        return currentS;
+      }
+      var store = StateManager.createStore(counterReducer);
+      const Counter = () => {
+        const [value, setValue] = React.useState(0);
+        const Add = () => {
+          store.dispatch({ type: "Plus" });
+          setValue(store.getState());
+        };
+        const Subtract = () => {
+          store.dispatch({ type: "Minus" });
+          setValue(store.getState());
+        };
+        return (
+          <div>
+            <h3>State Manager Demo example in UI</h3>
+            <input type="button" value="Add" onClick={Add} />
+            <span> [ {value} ] </span>
+            <input type="button" value="Subtract" onClick={Subtract} />
+          </div>
+        );
+      };
+      ReactDOM.render(<Counter />, document.getElementById("root"));
+    </script>
+  </head>
+  <body>
+    <!-- <h3>State Manager Demo example in browser console</h3> -->
+    <div id="root"></div>
+  </body>
+</html>
