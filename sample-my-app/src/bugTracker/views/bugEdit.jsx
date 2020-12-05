@@ -1,5 +1,7 @@
 import { useState } from "react";
-const BugEdit = ({ addNew }) => {
+import {projects} from '../../projects/index'
+import mapStateToProps from "../../bugTracker";
+const BugEdit = ({ addNew , store}) => {
   const [newBugName, setNewBugName] = useState("");
   return (
     <section className="edit">
@@ -8,7 +10,7 @@ const BugEdit = ({ addNew }) => {
 
       <label htmlFor="">Projects :</label>
       <select name="" id="">
-        <option value=""></option>
+        <option value={mapStateToProps}></option>
       </select>
 
       <input type="button" value="Add New" onClick={() => addNew(newBugName)} />
