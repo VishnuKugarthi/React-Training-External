@@ -1,51 +1,55 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store';
 
-import { bindActionCreators } from "redux";
-import * as bugActionCreators from "./bugTracker/actions";
-import * as productActionCreators from "./products/action";
-import store from "./store";
-import BugTracker from "./bugTracker";
-import Products from "./products/view";
-
-const bugActionDispatchers = bindActionCreators(
-  bugActionCreators,
-  store.dispatch
-);
-
-const productActionDispatchers = bindActionCreators(
-  productActionCreators,
-  store.dispatch
-);
-
-function renderApp() {
-  const stateStore = store.getState();
-  const bugs = stateStore.bugState;
-  const products = stateStore.bugState;
+import BugTracker from './bugTracker';
+import Projects from './projects';
 
   ReactDOM.render(
     <React.StrictMode>
-      <h1>My App</h1>
-      <Products products={products} {...productActionDispatchers} />
-      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+      <Provider store={store}>
+        <h1>My App</h1>
+        <Projects/>
+        <BugTracker/>
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
-}
-renderApp();
-store.subscribe(renderApp);
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+//ES6 Modules Examples
+
+/* 
+import * as calculator from './calc';
+console.log(calculator); 
+*/
+
+/* 
+import * as calculator from "./calc";
+//const add = calculator.add;
+const { add } = calculator;
+console.log(add(10,20)); 
+*/
+
+/* 
+import { add } from "./calc";
+console.log(add(10, 20)); 
+*/
+
+//importing the default exported entity
+/* import calculator from './calc';
+console.log(calculator);
+ */
+
+//importing the default exported and regular exported entities together
+//import calculator, { add } from './calc';

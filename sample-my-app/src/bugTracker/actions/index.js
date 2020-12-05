@@ -1,4 +1,4 @@
-export { addNew } from "./addNew";
-export { remove } from "./remove";
-export { removeClosed } from "./removeClosed";
-export { toggle } from "./toggle";
+export { addNew } from './addNew';
+export { toggle } from './toggle';
+export { remove } from './remove';
+export { removeClosed } from './removeClosed';

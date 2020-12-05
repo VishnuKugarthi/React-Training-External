@@ -1,1 +1,0 @@
-export {addNew} from './addNew'

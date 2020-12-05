@@ -5,7 +5,7 @@ export function addNew(bugName) {
     id: ++currentBugId,
     name: bugName,
     isClosed: false,
-    createdAt: new Date(),
+    createdAt: new Date()
   };
   const action = { type: "BUG_ADD_NEW", payload: newBug };
   return action;
