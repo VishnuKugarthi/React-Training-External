@@ -7,9 +7,8 @@ import bugApi from "../services/bugApi";
 // }
 
 export async function toggle(bugToToggle) {
-   await bugApi.get(bugToToggle);
-   const toggledBug = { ...bugToToggle, isClosed: !bugToToggle.isClosed };
-  // return response.data;
+  const toggledBugData = { ...bugToToggle, isClosed: !bugToToggle.isClosed };
+  const toggledBug = await bugApi.get(toggledBugData);
   const action = { type: "BUG_REPLACE", payload: toggledBug };
   return action;
 }

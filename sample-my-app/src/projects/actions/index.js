@@ -12,3 +12,5 @@ export const addNew = (projectName) => {
     return action;
 }
 
+export { load } from './load';
+

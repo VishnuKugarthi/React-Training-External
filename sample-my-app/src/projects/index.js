@@ -1,18 +1,22 @@
-import { useState } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as projectActionCreators from './actions';
+import { useState, useEffect } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as projectActionCreators from "./actions";
+import load from "./actions/load";
 
-const Projects = ({ projects, addNew }) => {
+const Projects = ({ projects, addNew, load }) => {
   const [newProjectName, setNewProjectName] = useState("");
+  useEffect(() => {
+    load();
+  }, [load]);
   return (
     <div>
       <h3>Projects</h3>
-      <hr/>
+      <hr />
       <label>Project Name : </label>
       <input
         type="text"
-        onChange={evt => setNewProjectName(evt.target.value)}
+        onChange={(evt) => setNewProjectName(evt.target.value)}
       />
       <input
         type="button"
@@ -20,7 +24,7 @@ const Projects = ({ projects, addNew }) => {
         onClick={() => addNew(newProjectName)}
       />
       <div>
-        {projects.map(project => (
+        {projects.map((project) => (
           <span key={project.id}> [{project.name}] </span>
         ))}
       </div>
@@ -28,8 +32,11 @@ const Projects = ({ projects, addNew }) => {
   );
 };
 
-export default connect (function (storeState){
-  return { projects : storeState.projectState };
-},  function(dispatch){
-  return bindActionCreators(projectActionCreators, dispatch)
-})(Projects);
+export default connect(
+  function (storeState) {
+    return { projects: storeState.projectState };
+  },
+  function (dispatch) {
+    return bindActionCreators(projectActionCreators, dispatch);
+  }
+)(Projects);
