@@ -7,6 +7,17 @@ async function getAll() {
   return response.data;
 }
 
-const projectsApi = { getAll };
+async function save(projectData){
+  if (projectData.id === 0 ){
+      const response = await axios.post(serviceEndPoint, projectData);
+      return response.data;
+  } else {
+      const response = await axios.put(`${serviceEndPoint}/${projectData.id}`, projectData);
+      return response.data;
+  }
+}
+
+
+const projectsApi = { getAll, save };
 
 export default projectsApi;

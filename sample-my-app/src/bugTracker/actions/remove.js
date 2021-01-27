@@ -1,12 +1,7 @@
-import bugApi from "../services/bugApi";
-
-// export function remove(bugToRemove) {
-//   const action = { type: "BUG_REMOVE", payload: bugToRemove };
-//   return action;
-// }
+import bugApi from '../services/bugApi';
 
 export async function remove(bugToRemove) {
   await bugApi.remove(bugToRemove);
-  const action = { type: "BUG_ADD_NEW", payload: bugToRemove };
+  const action = { type: "BUG_REMOVE", payload: bugToRemove };
   return action;
 }

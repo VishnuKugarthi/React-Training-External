@@ -1,26 +1,12 @@
-import bugApi from "../services/bugApi";
+let currentBugId = 0;
 
-// let currentBugId = 0;
-
-// export function addNew(bugName) {
-//   const newBug = {
-//     id: ++currentBugId,
-//     name: bugName,
-//     isClosed: false,
-//     createdAt: new Date()
-//   };
-//   const action = { type: "BUG_ADD_NEW", payload: newBug };
-//   return action;
-// }
-
-export async function addNew(bugName) {
+export function addNew(bugName) {
   const newBug = {
-    id: 0,
+    id: 0, /* server will decide the new id */
     name: bugName,
     isClosed: false,
-    createdAt: new Date(),
+    createdAt: new Date()
   };
-  await bugApi.save(newBug);
   const action = { type: "BUG_ADD_NEW", payload: newBug };
   return action;
 }
